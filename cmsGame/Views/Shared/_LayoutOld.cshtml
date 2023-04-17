@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebApplication1</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebApplication1.styles.css" asp-append-version="true" /><!-- CSS -->
+ 
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            .sidebar {
+                background-color: #f8f9fa;
+                padding: 20px;
+                width:100px;
+                height: auto;
+            background: lightseagreen;
+            }
+
+                .sidebar h1 {
+                    font-size: 24px;
+                    margin-bottom: 20px;
+                }
+
+                .sidebar ul {
+                    list-style-type: none;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                    .sidebar ul li {
+                        margin-bottom: 5px;
+                    }
+
+                        .sidebar ul li a {
+                            color: #000;
+                            text-decoration: none;
+                            font-size: 18px;
+                        }
+
+                            .sidebar ul li a:hover {
+                                color: #007bff;
+                            }
+
+            .content {
+                padding: 20px;
+            }
+        </style>
+    
+</head>
+<body>
+    <header>
+       @* <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebApplication1</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>*@
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2 sidebar">
+                <h1>Sidebar</h1>
+                <nav id="sidebarNav">
+                    <ul>
+                        <li>
+                            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Android Game</a>
+                            <ul class="collapse list-unstyled" id="homeSubmenu">
+                                <li><a asp-action="DetailsAndroidGame" asp-controller="Upload">Android List</a></li>
+                               @* <li><a asp-action="UploadFileAndroidGame" asp-controller="Upload">Upload Android Game</a></li>*@
+                                <li><a href="#">Edit Android Game</a></li>
+                                <li><a href="#">Upload Android Game Details</a></li>
+                               
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false">Java Game</a>
+                            <ul class="collapse list-unstyled" id="homeSubmenu1">
+                                <li><a asp-action="DetailsJavaGame" asp-controller="Upload">Java List</a></li>
+                                
+                                @*<li><a asp-action="UploadFileJavaGame" asp-controller="Upload">JAVA Game Upload </a></li>*@
+                                <li><a href="#">Edit JAVA Game</a></li>
+                                <li><a href="#">JAVA Game File Upload</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-md-10">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <a class="navbar-brand" href="#">Game Store</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-action="LogOut" asp-controller="">LogOut</a>
+                            </li>
+                            @*<li class="nav-item">
+                                <a class="nav-link" href="#">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Contact</a>
+                            </li>*@
+                        </ul>
+                    </div>
+                </nav>
+                <div class="content">
+                   @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - WebApplication1 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+<script>
+    // Accordion menu
+    const menuItems = document.querySelectorAll('.menu-item');
+    for (const item of menuItems) {
+        item.addEventListener('click', function () {
+            this.parentElement.classList.toggle('active');
+            const submenu = this.nextElementSibling;
+            if (submenu) {
+                submenu.classList.toggle('show');
+            }
+        });
+    }
+</script>

@@ -1,0 +1,83 @@
+﻿@model cmsGame.Models.Upload.UploadJavaGameModel
+
+@{
+    ViewData["Title"] = "CreateForJava";
+}
+
+<h1>CreateForJava</h1>
+
+<h4>UploadJavaGameModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateForJava">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Game_Title" class="control-label"></label>
+                <input asp-for="Game_Title" class="form-control" />
+                <span asp-validation-for="Game_Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Preview_URL" class="control-label"></label>
+                <input asp-for="Preview_URL" class="form-control" />
+                <span asp-validation-for="Preview_URL" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Game_Owner_Code" class="control-label"></label>
+                <input asp-for="Game_Owner_Code" class="form-control" />
+                <span asp-validation-for="Game_Owner_Code" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Game_Type_Code" class="control-label"></label>
+                <input asp-for="Game_Type_Code" class="form-control" />
+                <span asp-validation-for="Game_Type_Code" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Game_Price" class="control-label"></label>
+                <input asp-for="Game_Price" class="form-control" />
+                <span asp-validation-for="Game_Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Expire" class="control-label"></label>
+                <input asp-for="Expire" class="form-control" />
+                <span asp-validation-for="Expire" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Upload_Date" class="control-label"></label>
+                <input asp-for="Upload_Date" class="form-control" />
+                <span asp-validation-for="Upload_Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Upload_By" class="control-label"></label>
+                <input asp-for="Upload_By" class="form-control" />
+                <span asp-validation-for="Upload_By" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ismapped" class="control-label"></label>
+                <input asp-for="Ismapped" class="form-control" />
+                <span asp-validation-for="Ismapped" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Banner_Url" class="control-label"></label>
+                <input asp-for="Banner_Url" class="form-control" />
+                <span asp-validation-for="Banner_Url" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
