@@ -1,0 +1,93 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>aspnet-cmsGame-4927eff3-7f20-430e-91fc-c86837c8cb8f</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <COMReference Include="{bee4bfec-6683-3e67-9167-3c0cbc68f40a}">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>4</VersionMinor>
+      <VersionMajor>2</VersionMajor>
+      <Guid>bee4bfec-6683-3e67-9167-3c0cbc68f40a</Guid>
+    </COMReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\vendors\bower_components\animate.css\animate.min.css" />
+    <Content Include="wwwroot\vendors\bower_components\bootstrap-select\dist\css\bootstrap-select.css" />
+    <Content Include="wwwroot\vendors\bower_components\bootstrap-sweetalert\lib\sweet-alert.css" />
+    <Content Include="wwwroot\vendors\bower_components\chosen\chosen-sprite%402x.png" />
+    <Content Include="wwwroot\vendors\bower_components\chosen\chosen-sprite.png" />
+    <Content Include="wwwroot\vendors\bower_components\chosen\chosen.min.css" />
+    <Content Include="wwwroot\vendors\bower_components\eonasdan-bootstrap-datetimepicker\build\css\bootstrap-datetimepicker.min.css" />
+    <Content Include="wwwroot\vendors\bower_components\fullcalendar\dist\fullcalendar.min.css" />
+    <Content Include="wwwroot\vendors\bower_components\google-material-color\dist\palette.css" />
+    <Content Include="wwwroot\vendors\bower_components\lightgallery\dist\css\lightgallery.min.css" />
+    <Content Include="wwwroot\vendors\bower_components\lightgallery\dist\fonts\lgd41d.eot" />
+    <Content Include="wwwroot\vendors\bower_components\lightgallery\dist\fonts\lgd641.eot" />
+    <Content Include="wwwroot\vendors\bower_components\lightgallery\dist\fonts\lgd641.ttf" />
+    <Content Include="wwwroot\vendors\bower_components\lightgallery\dist\fonts\lgd641.woff" />
+    <Content Include="wwwroot\vendors\bower_components\lightgallery\dist\img\loading.gif" />
+    <Content Include="wwwroot\vendors\bower_components\lightgallery\dist\img\video-play.png" />
+    <Content Include="wwwroot\vendors\bower_components\lightgallery\dist\img\vimeo-play.png" />
+    <Content Include="wwwroot\vendors\bower_components\lightgallery\dist\img\youtube-play.png" />
+    <Content Include="wwwroot\vendors\bower_components\malihu-custom-scrollbar-plugin\jquery.mCustomScrollbar.min.css" />
+    <Content Include="wwwroot\vendors\bower_components\malihu-custom-scrollbar-plugin\mCSB_buttons.png" />
+    <Content Include="wwwroot\vendors\bower_components\material-design-iconic-font\dist\css\material-design-iconic-font.min.css" />
+    <Content Include="wwwroot\vendors\bower_components\material-design-iconic-font\dist\fonts\Material-Design-Iconic-Fontf066.ttf" />
+    <Content Include="wwwroot\vendors\bower_components\material-design-iconic-font\dist\fonts\Material-Design-Iconic-Fontf066.woff" />
+    <Content Include="wwwroot\vendors\bower_components\nouislider\distribute\jquery.nouislider.min.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\vendors\bower_components\autosize\dist\autosize.min.js" />
+    <None Include="wwwroot\vendors\bower_components\bootstrap-select\dist\js\bootstrap-select.js" />
+    <None Include="wwwroot\vendors\bower_components\bootstrap-sweetalert\lib\sweet-alert.min.js" />
+    <None Include="wwwroot\vendors\bower_components\bootstrap\dist\js\bootstrap.min.js" />
+    <None Include="wwwroot\vendors\bower_components\chosen\chosen.jquery.min.js" />
+    <None Include="wwwroot\vendors\bower_components\eonasdan-bootstrap-datetimepicker\build\js\bootstrap-datetimepicker.min.js" />
+    <None Include="wwwroot\vendors\bower_components\flot-orderBars\js\jquery.flot.orderBars.js" />
+    <None Include="wwwroot\vendors\bower_components\flot.curvedlines\curvedLines.js" />
+    <None Include="wwwroot\vendors\bower_components\flot.tooltip\js\jquery.flot.tooltip.min.js" />
+    <None Include="wwwroot\vendors\bower_components\flot\jquery.flot.js" />
+    <None Include="wwwroot\vendors\bower_components\flot\jquery.flot.pie.js" />
+    <None Include="wwwroot\vendors\bower_components\flot\jquery.flot.resize.js" />
+    <None Include="wwwroot\vendors\bower_components\fullcalendar\dist\fullcalendar.min.js" />
+    <None Include="wwwroot\vendors\bower_components\jquery.easy-pie-chart\dist\jquery.easypiechart.min.js" />
+    <None Include="wwwroot\vendors\bower_components\jquery\dist\jquery.min.js" />
+    <None Include="wwwroot\vendors\bower_components\lightgallery\dist\fonts\lgd641.svg" />
+    <None Include="wwwroot\vendors\bower_components\lightgallery\dist\js\lightgallery-all.min.js" />
+    <None Include="wwwroot\vendors\bower_components\malihu-custom-scrollbar-plugin\jquery.mCustomScrollbar.concat.min.js" />
+    <None Include="wwwroot\vendors\bower_components\moment\min\moment.min.js" />
+    <None Include="wwwroot\vendors\bower_components\nouislider\distribute\jquery.nouislider.all.min.js" />
+    <None Include="wwwroot\vendors\bower_components\salvattore\dist\salvattore.min.js" />
+    <None Include="wwwroot\vendors\bower_components\simpleWeather\jquery.simpleWeather.min.js" />
+    <None Include="wwwroot\vendors\bower_components\typeahead.js\dist\typeahead.bundle.min.js" />
+    <None Include="wwwroot\vendors\bower_components\Waves\dist\waves.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.17" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.17" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.17">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.17">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Content\xls\" />
+    <Folder Include="wwwroot\uploads\" />
+  </ItemGroup>
+
+</Project>
