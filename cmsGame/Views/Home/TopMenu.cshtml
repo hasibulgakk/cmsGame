@@ -1,0 +1,50 @@
+﻿
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - cmsGame</title>
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        
+            <div class="col-md-2 sidebar">
+                <h1>Sidebar</h1>
+                <nav id="sidebarNav">
+                    <ul>
+                        <li>
+                            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
+                            <ul class="collapse list-unstyled" id="homeSubmenu">
+                                <li><a asp-action="DetailsAndroidGame" asp-controller="Upload">Android Game List</a></li>
+                                <li><a asp-action="DetailsJavaGame" asp-controller="Upload">DetailsJavaGame</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+         
+       
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - cmsGame - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+</body>
+</html>
+
+
+
