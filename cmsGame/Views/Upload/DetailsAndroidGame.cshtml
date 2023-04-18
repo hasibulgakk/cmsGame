@@ -3,32 +3,39 @@
 @{
     ViewData["Title"] = "DetailsAndroidGame";
 }
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.1.2/css/fixedHeader.dataTables.min.css">
+<link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
 <style>
-    th{
-        border:1px solid black;
+
+    .card {
     }
 
-    td {
-        border: 1px solid black;
+    .alert-info {
+        justify-content: center;
     }
-
-   
 </style>
 
-<h1>DetailsAndroidGame</h1>
+<h4>DetailsAndroidGame</h4>
 @{
     ViewBag.Title = "Index";
 }
-<div class="card shadow mb-4">
+
+<div class="card shadow mb-4 ">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Upload File</h6>
     </div>
     <div class="card-body">
+
+        @*  <h5 class="personal-title">
+            <i class="fa fa-folder-open-o" aria-hidden="true"></i>Upload Android Games
+            <span class="pull-right"><i class="icon-lightbulb"></i> Welcome <strong> @Session["User"]     </strong></span>
+            </h5>*@
+
         @using (Html.BeginForm("InsertGameAndroid", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <!-- edit form column -->
 
-            <div class="alert-info" style="height:auto;width:auto;">
+            <div style="height:auto;width:auto;">
                 <div class="form-group col-md-12 col-lg-12">
                     <div class="col-lg-12">Content Owner:</div>
                     <div class="col-lg-12">
@@ -53,33 +60,36 @@
                         <input type="submit" class="btn btn-info" value="Import" />
                         <span>OR</span>
                         <input type="reset" value="Cancel" class="reset btn btn-warning" />
-                    
+
                     </div>
                 </div>
 
                 @*<div class="form-group col-lg-12 col-md-12">
-            <div class="col-lg-3 col-md-3">Content (zip):</div>
-            <div class="col-lg-8 col-md-8">
-            <input type="file" name="zip" data-toggle="tooltip" title="Select zip file of contents." />
-            </div>
-            </div>*@
-              @*  <div class="form-group col-lg-12" style="padding:6px;">
-                    <div class="col-lg-12 col-md-12">
+                    <div class="col-lg-3 col-md-3">Content (zip):</div>
+                    <div class="col-lg-8 col-md-8">
+                    <input type="file" name="zip" data-toggle="tooltip" title="Select zip file of contents." />
                     </div>
-                    <div class="col-lg-12 offset-4">
-                        <input type="submit" class="btn btn-info" value="Import" />
-                        <span>OR</span>
-                        <input type="reset" value="Cancel" class="reset btn btn-warning" />
-                    </div>
-                </div>
-                <h4 style="color:#f00;">@ViewBag.Error</h4>*@
+                    </div>*@
+                @*  <div class="form-group col-lg-12" style="padding:6px;">
+                        <div class="col-lg-12 col-md-12">
+                                </div>
+                        <div class="col-lg-12 offset-4">
+                            <input type="submit" class="btn btn-info" value="Import" />
+                                    <span>OR</span>
+                            <input type="reset" value="Cancel" class="reset btn btn-warning" />
+                                </div>
+                            </div>
+                    <h4 style="color:#f00;">@ViewBag.Error</h4>*@
             </div>
 
 
 
         }
+
     </div>
+
 </div>
+
 
 <script>
     $(document).ready(function () {
@@ -94,141 +104,143 @@
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Android List</h6>
     </div>
-<div class="card-body">
-    <div class="table-responsive">
-        <table id="tblAndroid"  class="display" width="100%" cellspacing="0">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Game_Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Preview_URL)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Physical_Location)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Owner_Code)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Game_Type_Code)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Game_Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Android_Version)
-            </th>
-          @*  <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.Expire)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Upload_Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Upload_By)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Banner_Url)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Install)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CurrentVersion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Size)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.InstallK)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Game_Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Preview_URL)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Physical_Location)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Owner_Code)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Game_Type_Code)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Game_Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Android_Version)
-            </td>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="tblAndroid" class="display" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Game_Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Preview_URL)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Physical_Location)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Owner_Code)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Game_Type_Code)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Game_Price)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Android_Version)
+                        </th>
+                        @*  <th>
+                                @Html.DisplayNameFor(model => model.Description)
+                            </th>*@
+                        <th>
+                            @Html.DisplayNameFor(model => model.Expire)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Upload_Date)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Upload_By)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Banner_Url)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Install)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CurrentVersion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Size)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.InstallK)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Game_Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Preview_URL)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Physical_Location)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Owner_Code)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Game_Type_Code)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Game_Price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Android_Version)
+                            </td>
 
-          @*  <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>*@
+                            @*  <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>*@
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Expire)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Upload_Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Upload_By)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Banner_Url)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Install)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CurrentVersion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Size)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InstallK)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Game_Code">Edit</a> 
-               @* <a asp-action="Details" asp-route-id="@item.Game_Code">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Game_Code">Delete</a>*@
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Expire)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Upload_Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Upload_By)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Banner_Url)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Install)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CurrentVersion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Size)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.InstallK)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Game_Code">Edit</a>
+                                @* <a asp-action="Details" asp-route-id="@item.Game_Code">Details</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.Game_Code">Delete</a>*@
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-</div>
-</div>
 
-
+<script src="~/Contents/vendor/jquery/jquery.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
-<link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
 <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
-     $(document).ready(function(){
-        let table = new DataTable('#tblAndroid',{
+    $(document).ready(function () {
+        let table = new DataTable('#tblAndroid', {
             responsive: true,
-            order:false
-         
+            order: false,
+            scrollY: 400
+
         });
-      
- });
+
+    });
 
 
 </script>
