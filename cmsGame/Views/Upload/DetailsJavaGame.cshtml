@@ -32,53 +32,55 @@
                 <div class="form-group col-md-12 col-lg-12">
                     <div class="col-lg-12">Content Owner:</div>
                     <div class="col-lg-12">
-                        @Html.DropDownList("ddlOwner", (SelectList)ViewBag.Owner, "Select Owner", new { @class = "form-control" })
+                            @Html.DropDownList("ddlOwner", (SelectList)ViewBag.Owner, "Select Owner", new { @class = "form-control" })
 
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group col-lg-12 col-md-12">
+                    <div class="form-group col-lg-12 col-md-12">
                     <div class="col-lg-12 col-md-12">
-                        Game Category:
-                    </div>
+                            Game Category:
+                        </div>
                     <div class="col-lg-12 col-md-12">
-                        @Html.DropDownList("ddlCategory", (SelectList)ViewBag.Category, "Select Category", new { @class = "form-control" })
+                            @Html.DropDownList("ddlCategory", (SelectList)ViewBag.Category, "Select Category", new { @class = "form-control" })
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group col-lg-12 col-md-12">
+                    <div class="form-group col-lg-12 col-md-12">
                     <div class="col-lg-12 col-md-12">Meta Data (CSV):</div>
                     <div class="col-lg-12 col-md-12">
-                        <input type="file" name="CsvFile" data-toggle="tooltip" title="Select CSV file of contents." />
+                            <input type="file" name="CsvFile" data-toggle="tooltip" title="Select CSV file of contents." />
                         <input type="submit" class="btn btn-info" value="Import" />
                         <span>OR</span>
                         <input type="reset" value="Cancel" class="reset btn btn-warning" />
                     
+                        </div>
                     </div>
-                </div>
 
-                @*<div class="form-group col-lg-12 col-md-12">
-            <div class="col-lg-3 col-md-3">Content (zip):</div>
-            <div class="col-lg-8 col-md-8">
-            <input type="file" name="zip" data-toggle="tooltip" title="Select zip file of contents." />
-            </div>
-            </div>*@
+                    @*<div class="form-group col-lg-12 col-md-12">
+                <div class="col-lg-3 col-md-3">Content (zip):</div>
+                <div class="col-lg-8 col-md-8">
+                <input type="file" name="zip" data-toggle="tooltip" title="Select zip file of contents." />
+                </div>
+                </div>*@
                @* <div class="form-group col-lg-12" style="padding:6px;">
                     <div class="col-lg-12 col-md-12">
-                    </div>
+                        </div>
                     <div class="col-lg-12 offset-4">
                         <input type="submit" class="btn btn-info" value="Import" />
-                        <span>OR</span>
+                            <span>OR</span>
                         <input type="reset" value="Cancel" class="reset btn btn-warning" />
+                        </div>
                     </div>
-                </div>
                 <h4 style="color:#f00;">@ViewBag.Error</h4>*@
-            </div>
+                </div>
 
-
+     
 
         }
+
     </div>
+
 </div>
 <script>
     $(document).ready(function () {
@@ -96,90 +98,90 @@
     <div class="card-body">
         <div class="table-responsive">
             <table id="tblJava" class="display" width="100%" cellspacing="0">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Game_Title)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Preview_URL)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Game_Owner_Code)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Game_Type_Code)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Game_Price)
-                    </th>
-                    @* <th>
-                    @Html.DisplayNameFor(model => model.Description)
-                    </th>*@
-                    <th>
-                        @Html.DisplayNameFor(model => model.Expire)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Upload_Date)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Upload_By)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Ismapped)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Banner_Url)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Game_Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Preview_URL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game_Owner_Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game_Type_Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game_Price)
+            </th>
+           @* <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Expire)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Upload_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Upload_By)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ismapped)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Banner_Url)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Game_Title)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Preview_URL)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Game_Owner_Code)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Game_Type_Code)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Game_Price)
-                        </td>
-                        @*   <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                    </td>*@
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Expire)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Upload_Date)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Upload_By)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Ismapped)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Banner_Url)
-                        </td>
-                        <td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Game_Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preview_URL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Game_Owner_Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Game_Type_Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Game_Price)
+            </td>
+         @*   <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Expire)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Upload_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Upload_By)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ismapped)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Banner_Url)
+            </td>
+            <td>
                             <a asp-action="Edit" asp-route-id="@item.Game_Code" class="btn btn-primary">Edit</a> 
                            @* <a asp-action="Details" asp-route-id="@item.Game_Code">Details</a> |
                             <a asp-action="Delete" asp-route-id="@item.Game_Code">Delete</a>*@
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
         </div>
     </div>
 </div>

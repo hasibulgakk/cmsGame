@@ -24,63 +24,71 @@
         <h6 class="m-0 font-weight-bold text-primary">Upload File</h6>
     </div>
     <div class="card-body">
-        @using (Html.BeginForm("InsertGameAndroid", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-            <!-- edit form column -->
+        
+                @*  <h5 class="personal-title">
+                <i class="fa fa-folder-open-o" aria-hidden="true"></i>Upload Android Games
+                <span class="pull-right"><i class="icon-lightbulb"></i> Welcome <strong> @Session["User"]     </strong></span>
+                </h5>*@
 
-            <div class="alert-info" style="height:auto;width:auto;">
-                <div class="form-group col-md-12 col-lg-12">
+                @using (Html.BeginForm("InsertGameAndroid", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <!-- edit form column -->
+
+            <div class="alert-info">
+                        <div class="form-group col-md-12 col-lg-12">
                     <div class="col-lg-12">Content Owner:</div>
                     <div class="col-lg-12">
-                        @Html.DropDownList("ddlOwner", (SelectList)ViewBag.Owner, "Select Owner", new { @class = "form-control" })
+                                @Html.DropDownList("ddlOwner", (SelectList)ViewBag.Owner, "Select Owner", new { @class = "form-control" })
 
-                    </div>
-                </div>
+                            </div>
+                        </div>
 
-                <div class="form-group col-lg-12 col-md-12">
+                        <div class="form-group col-lg-12 col-md-12">
                     <div class="col-lg-12 col-md-12">
-                        Game Category:
-                    </div>
+                                Game Category:
+                            </div>
                     <div class="col-lg-12 col-md-12">
-                        @Html.DropDownList("ddlCategory", (SelectList)ViewBag.Category, "Select Category", new { @class = "form-control" })
-                    </div>
-                </div>
+                                @Html.DropDownList("ddlCategory", (SelectList)ViewBag.Category, "Select Category", new { @class = "form-control" })
+                            </div>
+                        </div>
 
-                <div class="form-group col-lg-12 col-md-12">
+                        <div class="form-group col-lg-12 col-md-12">
                     <div class="col-lg-12 col-md-12">Meta Data (CSV):</div>
                     <div class="col-lg-12 col-md-12">
-                        <input type="file" name="CsvFile" data-toggle="tooltip" title="Select CSV file of contents." />
+                                <input type="file" name="CsvFile" data-toggle="tooltip" title="Select CSV file of contents." />
                         <input type="submit" class="btn btn-info" value="Import" />
                         <span>OR</span>
                         <input type="reset" value="Cancel" class="reset btn btn-warning" />
                     
-                    </div>
-                </div>
+                            </div>
+                        </div>
 
-                @*<div class="form-group col-lg-12 col-md-12">
-            <div class="col-lg-3 col-md-3">Content (zip):</div>
-            <div class="col-lg-8 col-md-8">
-            <input type="file" name="zip" data-toggle="tooltip" title="Select zip file of contents." />
-            </div>
-            </div>*@
+                        @*<div class="form-group col-lg-12 col-md-12">
+                    <div class="col-lg-3 col-md-3">Content (zip):</div>
+                    <div class="col-lg-8 col-md-8">
+                    <input type="file" name="zip" data-toggle="tooltip" title="Select zip file of contents." />
+                    </div>
+                    </div>*@
               @*  <div class="form-group col-lg-12" style="padding:6px;">
                     <div class="col-lg-12 col-md-12">
-                    </div>
+                            </div>
                     <div class="col-lg-12 offset-4">
                         <input type="submit" class="btn btn-info" value="Import" />
-                        <span>OR</span>
+                                <span>OR</span>
                         <input type="reset" value="Cancel" class="reset btn btn-warning" />
-                    </div>
-                </div>
+                            </div>
+                        </div>
                 <h4 style="color:#f00;">@ViewBag.Error</h4>*@
+                    </div>
+
+
+
+                }
+
             </div>
 
-
-
-        }
-    </div>
-</div>
-
+        </div>
+ 
 <script>
     $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip();
