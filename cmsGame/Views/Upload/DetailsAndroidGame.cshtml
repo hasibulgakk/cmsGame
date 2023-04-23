@@ -105,7 +105,7 @@
         <h6 class="m-0 font-weight-bold text-primary">Android List</h6>
     </div>
     <div class="card-body">
-        <div class="table-responsive">
+        <div class="table table-responsive">
             <table id="tblAndroid" class="display" width="100%" cellspacing="0">
                 <thead>
                     <tr>
@@ -215,7 +215,7 @@
                                 @Html.DisplayFor(modelItem => item.InstallK)
                             </td>
                             <td>
-                                <a asp-action="Edit" asp-route-id="@item.Game_Code">Edit</a>
+                                <a asp-action="Edit" asp-route-id="@item.Game_Code" class="btn btn-primary">Edit</a>
                                 @* <a asp-action="Details" asp-route-id="@item.Game_Code">Details</a> |
                                     <a asp-action="Delete" asp-route-id="@item.Game_Code">Delete</a>*@
                             </td>
@@ -236,7 +236,10 @@
         let table = new DataTable('#tblAndroid', {
             responsive: true,
             order: false,
-            scrollY: 400
+
+            sScrollX: true,
+            scrollY: 400,
+            scrollH: true,
 
         });
 

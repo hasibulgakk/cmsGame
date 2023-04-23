@@ -18,7 +18,6 @@ namespace cmsGame.Controllers
 {
     public class UploadController : Controller
     {
-        private readonly CMSDbContext dbContext;
         private readonly ICMSService cMSService;
         private readonly IWebHostEnvironment environment;
 

@@ -40,7 +40,8 @@ namespace cmsGame
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<ICMSService, CMSService>();
             services.AddScoped<ILoginService, LoginService>();
-            services.AddSession(options =>
+			services.AddScoped<IPublishService, PublishService>();
+			services.AddSession(options =>
             {
 				
             });
