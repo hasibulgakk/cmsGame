@@ -36,7 +36,7 @@ namespace cmsGame.Controllers
             {
               
                 HttpContext.Session.SetString("User", usrId);
-                //Session["User"] = usrId;
+               
                 return RedirectToAction("Index", "Home");
             }
             else
