@@ -132,25 +132,87 @@ namespace cmsGame.Controllers
 
 
         // GET: UploadController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet]
+        public ActionResult EditAndroid(int Game_Code)
         {
-            return View();
+         var androidModel=   cMSService.ListServiceAndroid().FirstOrDefault(x=>x.Game_Code==Convert.ToInt32(Game_Code));
+            return View(androidModel);
         }
 
         // POST: UploadController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult EditAndroid(int Game_Code, IFormCollection collection)
         {
             try
+
             {
-                return RedirectToAction(nameof(Index));
+                var upload = cMSService.ListServiceAndroid().FirstOrDefault(x => x.Game_Code == Convert.ToInt32(Game_Code));
+                upload.Game_Title = collection["Game_Title"];
+                upload.Preview_URL = collection["Preview_URL"];
+                upload.Physical_Location = collection["Physical_Location"];
+                upload.Owner_Code = Convert.ToInt32(collection["Owner_Code"]);
+                upload.Game_Type_Code = Convert.ToInt32(collection["Game_Type_Code"]);
+                upload.Game_Price = collection["Game_Price"];
+                upload.Android_Version = collection["Android_Version"];
+                upload.Description = collection["Description"];
+                upload.Expire = collection["Expire"];
+                upload.Upload_Date = DateTime.Parse(collection["Upload_Date"]);
+                upload.Upload_By = collection["Upload_By"];
+                upload.Banner_Url = collection["Banner_Url"];
+                upload.Install = collection["Install"];
+                upload.CurrentVersion = collection["CurrentVersion"];
+                upload.Size = collection["Size"];
+                upload.InstallK = collection["InstallK"];
+                cMSService.EditServiceAndroid(Game_Code, upload);
+                 return RedirectToAction(nameof(DetailsAndroidGame));
             }
-            catch
+            catch(Exception ex)
             {
                 return View();
             }
         }
+
+
+
+        public ActionResult EditJava(int Game_Code)
+        {
+            var androidJava = cMSService.ListServiceJava().FirstOrDefault(x => x.Game_Code == Convert.ToInt32(Game_Code));
+            return View(androidJava);
+        }
+
+        // POST: UploadController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditJava(int Game_Code, IFormCollection collection)
+        {
+            try
+
+            {
+                var upload = cMSService.ListServiceJava().FirstOrDefault(x => x.Game_Code == Convert.ToInt32(Game_Code));
+                upload.Game_Title = collection["Game_Title"];
+                upload.Preview_URL = collection["Preview_URL"];
+
+                upload.Game_Owner_Code = Convert.ToInt32(collection["Owner_Code"]);
+                upload.Game_Type_Code = Convert.ToInt32(collection["Game_Type_Code"]);
+                upload.Game_Price = collection["Game_Price"];
+
+                upload.Description = collection["Description"];
+                upload.Expire = collection["Expire"];
+                upload.Upload_Date = DateTime.Parse(collection["Upload_Date"]);
+                upload.Upload_By = collection["Upload_By"];
+                upload.Ismapped = collection["Ismapped"];
+                upload.Banner_Url = collection["Banner_Url"];
+                cMSService.EditServiceJava(Game_Code, upload);
+
+                return RedirectToAction(nameof(DetailsJavaGame));
+            }
+            catch (Exception ex)
+            {
+                return View();
+            }
+        }
+
 
         // GET: UploadController/Delete/5
         public ActionResult Delete(int id)

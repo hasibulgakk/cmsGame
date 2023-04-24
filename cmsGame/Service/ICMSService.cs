@@ -16,5 +16,8 @@ namespace cmsGame.Service
 
         public List<GameCategoryModel> SelectListCategoryServiceAndriod();
         public List<GameCategoryModel> SelectListCategoryServiceJava();
+
+        public UploadAndroidGameModel EditServiceAndroid(int Game_Code, UploadAndroidGameModel uploadAndroid);
+        public UploadJavaGameModel EditServiceJava(int Game_Code, UploadJavaGameModel uploadJava);
     }
 }

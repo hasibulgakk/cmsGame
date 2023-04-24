@@ -215,7 +215,7 @@
                                 @Html.DisplayFor(modelItem => item.InstallK)
                             </td>
                             <td>
-                                <a asp-action="Edit" asp-route-id="@item.Game_Code" class="btn btn-primary">Edit</a>
+                                <a asp-action="EditAndroid" asp-controller="Upload" asp-route-Game_Code="@item.Game_Code" class="btn btn-primary">Edit</a>
                                 @* <a asp-action="Details" asp-route-id="@item.Game_Code">Details</a> |
                                     <a asp-action="Delete" asp-route-id="@item.Game_Code">Delete</a>*@
                             </td>
