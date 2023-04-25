@@ -23,10 +23,10 @@ namespace cmsGame.Controllers
             this.publishService = publishService;
         }
 
-		public IActionResult Index()
+		public async Task <IActionResult> Index()
 		{
-			ViewBag.AndroidCount = cMSService.ListServiceAndroid().Count.ToString();
-            ViewBag.JavaCount = cMSService.ListServiceJava().Count.ToString();
+			//ViewBag.AndroidCount =await cMSService.ListServiceAndroid().Count.ToString();
+         //   ViewBag.JavaCount =await cMSService.ListServiceJava().Count.ToString();
 			ViewBag.PublishCount= publishService.GetAllPublishGameList().Count.ToString();
             return View();
 		}

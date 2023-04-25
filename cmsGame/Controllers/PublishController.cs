@@ -34,5 +34,10 @@ namespace cmsGame.Controllers
         {
             return Type;
         }
+
+        public ActionResult CreatePublish()
+        {
+            return View();
+        }
     }
 }

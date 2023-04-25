@@ -1,7 +1,10 @@
 ﻿using cmsGame.Data;
 using cmsGame.Models.Upload;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace cmsGame.Service
 {
@@ -15,7 +18,7 @@ namespace cmsGame.Service
        
             this.dbContext = dbContext;
         }
-        public UploadAndroidGameModel CreateServiceAndroid(UploadAndroidGameModel model)
+        public async Task<UploadAndroidGameModel> CreateServiceAndroid(UploadAndroidGameModel model)
         {
             dbContext.UploadAndroidGameModel.Add(model);
             dbContext.SaveChanges();
@@ -23,7 +26,7 @@ namespace cmsGame.Service
            
         }
 
-        public UploadJavaGameModel CreateServiceJava(UploadJavaGameModel model)
+        public async Task<UploadJavaGameModel> CreateServiceJava(UploadJavaGameModel model)
         {
             dbContext.UploadJavaGameModel.Add(model);   
             dbContext.SaveChanges();
@@ -31,61 +34,87 @@ namespace cmsGame.Service
             
         }
 
-       public List<UploadAndroidGameModel> ListServiceAndroid()
+       public async Task<List<UploadAndroidGameModel>> ListServiceAndroid()
         {
-            return dbContext.UploadAndroidGameModel.ToList();
+            try
+            {
+                return await dbContext.UploadAndroidGameModel.OrderByDescending(i => i.Upload_Date).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+        
+        public async Task<List<UploadJavaGameModel>> ListServiceJava()
+        {
+            return await dbContext.UploadJavaGameModel.OrderByDescending(i => i.Upload_Date).ToListAsync();
         }
 
-        public List<UploadJavaGameModel> ListServiceJava()
+        public async Task<List<OwnerModel>> SelectListOwnerServiceJava()
         {
-            return dbContext.UploadJavaGameModel.ToList();
-        }
-
-        public List<OwnerModel> SelectListOwnerServiceJava()
-        {
-            return dbContext.OwnerModels.Select(x => new OwnerModel()
+            return await dbContext.OwnerModels.Select(x => new OwnerModel()
             {
                 Owner_Code = x.Owner_Code,
                 Owner_Name = x.Owner_Name,
-            }).ToList();
+            }).ToListAsync();
         }
-        public List<OwnerModel> SelectListOwnerServiceAndriod()
+        public async Task<List<OwnerModel>> SelectListOwnerServiceAndriod()
         {
-            return dbContext.OwnerModels.Select(x => new OwnerModel()
+            return await dbContext.OwnerModels.Select(x => new OwnerModel()
             {
                 Owner_Code = x.Owner_Code,
                 Owner_Name = x.Owner_Name,
-            }).ToList();
+            }).ToListAsync();
         }
 
 
-        public List<GameCategoryModel> SelectListCategoryServiceJava()
+        public async Task<List<GameCategoryModel>> SelectListCategoryServiceJava()
         {
-            return dbContext.GameCategoryModels.Select(x => new GameCategoryModel()
+            return await dbContext.GameCategoryModels.Select(x => new GameCategoryModel()
             {
                 Category_Code = x.Category_Code,
                 Category_Title = x.Category_Title,
-            }).ToList();
+            }).ToListAsync();
         }
-        public List<GameCategoryModel> SelectListCategoryServiceAndriod()
+        public async Task<List<GameCategoryModel>> SelectListCategoryServiceAndriod()
         {
-            return dbContext.GameCategoryModels.Select(x => new GameCategoryModel()
+            var a= await dbContext.GameCategoryModels.Select(x => new GameCategoryModel()
             {
-                 Category_Code = x.Category_Code,
+                Category_Code = x.Category_Code,
                 Category_Title = x.Category_Title,
-            }).ToList();
+            }).ToListAsync();
+            return  a;
+            //return await dbContext.GameCategoryModels.Select(x => new GameCategoryModel()
+            //{
+            //     Category_Code = x.Category_Code,
+            //    Category_Title = x.Category_Title,
+            //}).ToListAsync();
         }
 
-        public UploadAndroidGameModel EditServiceAndroid(int Game_Code,UploadAndroidGameModel uploadAndroid)
+        public async Task<UploadAndroidGameModel> EditServiceAndroid(int Game_Code,UploadAndroidGameModel uploadAndroid)
         {
-        var model=   dbContext.UploadAndroidGameModel.FirstOrDefault(x => x.Game_Code == Game_Code);
+        var model= await  dbContext.UploadAndroidGameModel.FirstOrDefaultAsync(x => x.Game_Code == Game_Code);
             dbContext.SaveChanges();
             return model;
         }
-
-        public UploadJavaGameModel EditServiceJava(int Game_Code, UploadJavaGameModel uploadJava)
+        public async Task<UploadAndroidGameModel> EditServiceAndroidGame(int Game_Code)
         {
-            var model = dbContext.UploadJavaGameModel.FirstOrDefault(x => x.Game_Code == Game_Code);
+
+            return await dbContext.UploadAndroidGameModel.OrderByDescending(i => i.Upload_Date).FirstOrDefaultAsync(x => x.Game_Code == Convert.ToInt32(Game_Code));
+
+        }
+
+        public async Task<UploadJavaGameModel> EditServiceJavaGame(int Game_Code)
+        {
+
+            return await dbContext.UploadJavaGameModel.OrderByDescending(i => i.Upload_Date).FirstOrDefaultAsync(x => x.Game_Code == Convert.ToInt32(Game_Code));
+
+        }
+        public async Task<UploadJavaGameModel> EditServiceJava(int Game_Code, UploadJavaGameModel uploadJava)
+        {
+            var model =await dbContext.UploadJavaGameModel.FirstOrDefaultAsync(x => x.Game_Code == Game_Code);
             dbContext.SaveChanges();
             return model;
         }

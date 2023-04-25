@@ -38,7 +38,7 @@ namespace cmsGame
 			services.AddControllersWithViews();
             services.AddDbContext<CMSDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddScoped<ICMSService, CMSService>();
+            services.AddTransient<ICMSService, CMSService>();
             services.AddScoped<ILoginService, LoginService>();
 			services.AddScoped<IPublishService, PublishService>();
 			services.AddSession(options =>
