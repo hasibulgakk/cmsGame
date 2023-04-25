@@ -14,17 +14,20 @@ namespace cmsGame.Controllers
 	{
 		private readonly ILogger<HomeController> _logger;
         private readonly ICMSService cMSService;
+        private readonly IPublishService publishService;
 
-        public HomeController(ILogger<HomeController> logger,ICMSService cMSService)
+        public HomeController(ILogger<HomeController> logger,ICMSService cMSService,IPublishService publishService)
 		{
 			_logger = logger;
             this.cMSService = cMSService;
+            this.publishService = publishService;
         }
 
 		public IActionResult Index()
 		{
 			ViewBag.AndroidCount = cMSService.ListServiceAndroid().Count.ToString();
             ViewBag.JavaCount = cMSService.ListServiceJava().Count.ToString();
+			ViewBag.PublishCount= publishService.GetAllPublishGameList().Count.ToString();
             return View();
 		}
 
