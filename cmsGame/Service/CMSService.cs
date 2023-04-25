@@ -80,17 +80,12 @@ namespace cmsGame.Service
         }
         public async Task<List<GameCategoryModel>> SelectListCategoryServiceAndriod()
         {
-            var a= await dbContext.GameCategoryModels.Select(x => new GameCategoryModel()
+          
+            return await dbContext.GameCategoryModels.Select(x => new GameCategoryModel()
             {
                 Category_Code = x.Category_Code,
                 Category_Title = x.Category_Title,
             }).ToListAsync();
-            return  a;
-            //return await dbContext.GameCategoryModels.Select(x => new GameCategoryModel()
-            //{
-            //     Category_Code = x.Category_Code,
-            //    Category_Title = x.Category_Title,
-            //}).ToListAsync();
         }
 
         public async Task<UploadAndroidGameModel> EditServiceAndroid(int Game_Code,UploadAndroidGameModel uploadAndroid)
