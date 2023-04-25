@@ -26,7 +26,7 @@ namespace cmsGame.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginModel login)
+        public  ActionResult Login(LoginModel login)
         {
             string usrId = login.UserName;
             string passw = login.Password;
@@ -36,7 +36,7 @@ namespace cmsGame.Controllers
             {
               
                 HttpContext.Session.SetString("User", usrId);
-                //Session["User"] = usrId;
+               
                 return RedirectToAction("Index", "Home");
             }
             else

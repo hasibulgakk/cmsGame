@@ -1,4 +1,5 @@
 ﻿using cmsGame.Models.Account;
+using cmsGame.Models.Publish;
 using cmsGame.Models.Upload;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,5 +17,6 @@ namespace cmsGame.Data
         public  DbSet<GameCategoryModel> GameCategoryModels { get; set; }
       
         public DbSet<LoginModel> LoginModels { get; set; }
+        public DbSet<GamePublishModel>  gamePublishModels { get; set; }
     }
 }
