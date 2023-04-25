@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor _iHttpContextAccessor
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -34,22 +36,24 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                   @* <i class="fas fa-laugh-wink"></i>*@
-                </div>
-                <div class="sidebar-brand-text mx-3">CMS Game </div>
-            </a>
+            <li>
+                <a class="sidebar-brand d-flex align-items-center justify-content-center"  asp-action="Index" asp-controller="Home">
+
+                    CMS Game Portal
+                </a>
+            </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
+            <li>
+                <hr class="sidebar-divider my-0">
+            </li>
+                <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                   
-                    @*<i class="fas fa-fw fa-duotone fa-house-window"></i>*@
+                <a class="nav-link" asp-action="Index" asp-controller="Home">
+
+              
                     <i class="fas fa-fw fa-tachometer-alt"></i>
+
                     <span>Home</span>
                 </a>
             </li>
@@ -58,9 +62,9 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-         @*   <div class="sidebar-heading">
-                Interface
-            </div>*@
+            @*   <div class="sidebar-heading">
+            Interface
+        </div>*@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -71,33 +75,43 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                       
+
+                        <h6 class="collapse-header">Custom Components:</h6>
+
                         <a class="collapse-item" asp-action="DetailsAndroidGame" asp-controller="Upload">Android Game Upload</a>
                         <a class="collapse-item" href="#">Edit Android Game</a>
                         <a class="collapse-item" href="#">Upload Android Game </a>
                         <a class="collapse-item" asp-action="DetailsJavaGame" asp-controller="Upload">Java Game  Upload</a>
                         <a class="collapse-item" href="#">Edit Java Game</a>
                         <a class="collapse-item" href="#">Java Game File Upload</a>
-                       
+
                     </div>
                 </div>
             </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
+            <!-- Nav Item - Publish Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
+                  <i class="fas fa-fw fa-solid fa-newspaper"></i>
+                    <span>Publish</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                      data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
+
+                        <h6 class="collapse-header">Custom Utilities:</h6>
+                        <a class="collapse-item" href="utilities-color.html">Colors</a>
+                        <a class="collapse-item" href="utilities-border.html">Borders</a>
+                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                        <a class="collapse-item" href="utilities-other.html">Other</a>
+
                         
                         <a class="collapse-item" href="#">Colors</a>
                         <a class="collapse-item" href="#">Borders</a>
                         <a class="collapse-item" href="#">Animations</a>
                         <a class="collapse-item" href="#">Other</a>
+
                     </div>
                 </div>
             </li>
@@ -106,61 +120,61 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
-            </div>
-
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                   aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
-                    </div>
+            @*<li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Pages</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Login Screens:</h6>
+                    <a class="collapse-item" href="login.html">Login</a>
+                    <a class="collapse-item" href="register.html">Register</a>
+                    <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                    <div class="collapse-divider"></div>
+                    <h6 class="collapse-header">Other Pages:</h6>
+                    <a class="collapse-item" href="404.html">404 Page</a>
+                    <a class="collapse-item" href="blank.html">Blank Page</a>
                 </div>
-            </li>
+            </div>
+        </li>*@
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span>
-                </a>
-            </li>
+            @*<li class="nav-item">
+            <a class="nav-link" href="charts.html">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Charts</span>
+            </a>
+        </li>*@
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span>
-                </a>
-            </li>
+            @*<li class="nav-item">
+            <a class="nav-link" href="tables.html">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Tables</span>
+            </a>
+        </li>*@
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
             <!-- Sidebar Toggler (Sidebar) -->
+
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
        @*     <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>*@
 
+
             <!-- Sidebar Message -->
-       @*     <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
-                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-            </div>*@
+            @*     <div class="sidebar-card d-none d-lg-flex">
+            <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
+            <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
+            <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
+        </div>*@
 
         </ul>
         <!-- End of Sidebar -->
@@ -219,7 +233,11 @@
                         </li>
 
                         <!-- Nav Item - Alerts -->
+
+                       @* <li class="nav-item dropdown no-arrow mx-1">*@
+
                        @* <li class="nav-item dropdown no-arrow mx-1">
+
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
@@ -267,10 +285,17 @@
                                 </a>
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                             </div>
+
+                        </li>
+
+                        <!-- Nav Item - Messages -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+
                         </li>*@
 
                         <!-- Nav Item - Messages -->
                       @*  <li class="nav-item dropdown no-arrow mx-1">
+
                             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
@@ -341,23 +366,39 @@
                                 </a>
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                             </div>
+
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <img class="img-profile rounded-circle"
+                                     src="img/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                         </li>*@
 
                         <div class="topbar-divider d-none d-sm-block"></div>
                         <a class="dropdown-item" asp-action="Logout" asp-controller="Account" data-toggle="modal" data-target="#logoutModal">
-                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Logout
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
+                            @_iHttpContextAccessor.HttpContext.Session.GetString("User")  Logout  
                         </a>
                         <!-- Nav Item - User Information -->
-                       @* <li class="nav-item dropdown no-arrow">
+                        @* <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Profile</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-800600 small">Profile</span>
                                 <img class="img-profile rounded-circle"
                                      src="img/undraw_profile.svg">
                             </a>*@
                             <!-- Dropdown - User Information -->
                           @*  <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+
                                  aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -372,12 +413,20 @@
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
+
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+
                                 <a class="dropdown-item" asp-action="Logout" asp-controller="Account" data-toggle="modal" data-target="#logoutModal">
+
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
                             </div>
+
+                        </li>
+
                         </li>*@
+
 
                     </ul>
 
@@ -388,10 +437,13 @@
                     @RenderBody()
                     <!-- Page Heading -->
 
+ 
+
                 @*    <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Home</h1>
 
                     </div>*@
+
 
                     <!-- Content Row -->
                     <!-- Content Row -->
@@ -407,7 +459,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; Gakk media 2023</span>
                     </div>
                 </div>
             </footer>
@@ -446,36 +498,30 @@
     <!-- Bootstrap core JavaScript-->
     <script src="~/contents/vendor/jquery/jquery.js"></script>
     <script src="~/contents/vendor/jquery/jquery.min.js"></script>
-    <script src="~/contents/vendor/jquery/jquery.slim.js"></script>
-    <script src="~/contents/vendor/jquery/jquery.slim.min.js"></script>
-   
+
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="~/contents/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="~/contents/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/contents/vendor/bootstrap/js/bootstrap.js"></script>
     <script src="~/contents/vendor/bootstrap/js/bootstrap.min.js"></script>
-   
+
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="~/contents/vendor/jquery-easing/jquery.easing.compatibility.js"></script>
-    <script src="~/contents/vendor/jquery-easing/jquery.easing.js"></script>
-    <script src="~/contents/vendor/jquery-easing/jquery.easing.min.js"></script>
+
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="~/contents/js/sb-admin-2.js"></script>
+
     <script src="~/contents/js/sb-admin-2.min.js"></script>
     <script src="js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="~/contents/vendor/chart.js/chart.min.js"></script>
+
     <script src="vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="~/contents/js/demo/chart-area-demo.js"></script>
-    <script src="~/contents/js/demo/chart-bar-demo.js"></script>
-    <script src="~/contents/js/demo/chart-pie-demo.js"></script>
+
     <script src="~/contents/js/demo/datatables-demo.js"></script>
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>

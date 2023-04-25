@@ -75,5 +75,19 @@ namespace cmsGame.Service
                 Category_Title = x.Category_Title,
             }).ToList();
         }
+
+        public UploadAndroidGameModel EditServiceAndroid(int Game_Code,UploadAndroidGameModel uploadAndroid)
+        {
+        var model=   dbContext.UploadAndroidGameModel.FirstOrDefault(x => x.Game_Code == Game_Code);
+            dbContext.SaveChanges();
+            return model;
+        }
+
+        public UploadJavaGameModel EditServiceJava(int Game_Code, UploadJavaGameModel uploadJava)
+        {
+            var model = dbContext.UploadJavaGameModel.FirstOrDefault(x => x.Game_Code == Game_Code);
+            dbContext.SaveChanges();
+            return model;
+        }
     }
 }

@@ -1,0 +1,110 @@
+﻿@model cmsGame.Models.Upload.UploadAndroidGameModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>UploadAndroidGameModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditAndroid">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Game_Code" />
+            <div class="form-group">
+                <label asp-for="Game_Title" class="control-label"></label>
+                <input asp-for="Game_Title" class="form-control" />
+                <span asp-validation-for="Game_Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Preview_URL" class="control-label"></label>
+                <input asp-for="Preview_URL" class="form-control" />
+                <span asp-validation-for="Preview_URL" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Physical_Location" class="control-label"></label>
+                <input asp-for="Physical_Location" class="form-control" />
+                <span asp-validation-for="Physical_Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Owner_Code" class="control-label"></label>
+                <input asp-for="Owner_Code" class="form-control" />
+                <span asp-validation-for="Owner_Code" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Game_Type_Code" class="control-label"></label>
+                <input asp-for="Game_Type_Code" class="form-control" />
+                <span asp-validation-for="Game_Type_Code" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Game_Price" class="control-label"></label>
+                <input asp-for="Game_Price" class="form-control" />
+                <span asp-validation-for="Game_Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Android_Version" class="control-label"></label>
+                <input asp-for="Android_Version" class="form-control" />
+                <span asp-validation-for="Android_Version" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Expire" class="control-label"></label>
+                <input asp-for="Expire" class="form-control" />
+                <span asp-validation-for="Expire" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Upload_Date" class="control-label"></label>
+                <input asp-for="Upload_Date" class="form-control" />
+                <span asp-validation-for="Upload_Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Upload_By" class="control-label"></label>
+                <input asp-for="Upload_By" class="form-control" />
+                <span asp-validation-for="Upload_By" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Banner_Url" class="control-label"></label>
+                <input asp-for="Banner_Url" class="form-control" />
+                <span asp-validation-for="Banner_Url" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Install" class="control-label"></label>
+                <input asp-for="Install" class="form-control" />
+                <span asp-validation-for="Install" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CurrentVersion" class="control-label"></label>
+                <input asp-for="CurrentVersion" class="form-control" />
+                <span asp-validation-for="CurrentVersion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Size" class="control-label"></label>
+                <input asp-for="Size" class="form-control" />
+                <span asp-validation-for="Size" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InstallK" class="control-label"></label>
+                <input asp-for="InstallK" class="form-control" />
+                <span asp-validation-for="InstallK" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+
+
+}

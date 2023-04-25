@@ -40,11 +40,13 @@ namespace cmsGame
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<ICMSService, CMSService>();
             services.AddScoped<ILoginService, LoginService>();
-            services.AddSession(options =>
+			services.AddScoped<IPublishService, PublishService>();
+			services.AddSession(options =>
             {
 				
             });
-        }
+			services.AddHttpContextAccessor();
+		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
