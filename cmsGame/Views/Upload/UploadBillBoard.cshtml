@@ -1,0 +1,126 @@
+﻿@{
+    ViewBag.Title = "UploadBillboard";
+}
+
+
+<h5 class="personal-title">
+    <i class="fa fa-folder-open-o" aria-hidden="true"></i>&nbsp; Edit Android Games
+    <span class="pull-right"><i class="icon-lightbulb"></i>&nbsp; Welcome <strong></strong></span>
+</h5>
+
+@using (Html.BeginForm("UploadBillboard", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <!-- edit form column -->
+    <div class="col-md-12 personal-info" ng-controller="CheckBannerCtrl">
+        
+            <div class="row">
+                <div class="form-group col-lg-12 col-md-12">
+                    <div class="col-lg-2 col-md-2">Game Code:</div>
+                    <div class="col-lg-5 col-md-5">
+                        <input type="text" class="form-control" id="code" readonly="readonly" name="code" value="@ViewBag.GameCode" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+            </div>
+
+            <div class="row">
+                <div class="form-group col-lg-12 col-md-12">
+                    <div class="col-lg-2 col-md-2">
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-lg-12 col-md-12">
+                    <div class="col-lg-2 col-md-2">Billboard Image:</div>
+                    <div class="col-lg-6 col-md-6">
+                        @*<input type="file" name="banner" data-toggle="tooltip" title="Select single banner image." />*@
+                        @*<input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="2" />*@
+                        @if (ViewBag.BannerUrl != null)
+                        {
+                            foreach (var p in ViewBag.BannerUrl)
+                            {
+                                <div class="col-lg-6 col-md-6">
+                                    <img src="http://43.240.103.34/GpCms/Content/zip/BillBoard/@p.BannerURL" width="100%" />
+                                    @*<img src="~/Content/zip/BillBoard/@p.BannerURL" width="100%" />*@
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="form-group">
+                                <input id="file-1" type="file" name="bill"  data-overwrite-initial="false" data-min-file-count="1" />
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            @*<div class="form-group col-lg-12 col-md-12">
+        <div class="col-lg-3 col-md-3">Screenshot:</div>
+        <div class="col-lg-8 col-md-8">
+        <input type="file" name="screen" data-toggle="tooltip" title="Select single screenshot image." />
+        </div>
+        </div>*@
+
+            @*<div class="form-group col-lg-12">
+        <div class="col-lg-3 col-md-3">
+        </div>
+        <div class="col-lg-8">
+        <input type="submit" class="btn-glow primary" value="Upload" />
+        <span>OR</span>
+        <input type="reset" value="Cancel" class="reset" />
+        <span>OR</span>
+        @Html.ActionLink("Back to List", "UploadGameDetails")
+        </div>
+        </div>*@
+            <div class="form-group col-lg-12">
+                <div class="col-lg-3 col-md-3">
+                </div>
+                <div class="col-lg-8">
+                    <h4 style="color: #F00">@ViewBag.Error</h4>
+                </div>
+            </div>
+
+        </div>
+    
+}
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+
+        $("#file-1").fileinput({
+            uploadUrl: '#', // you must set a valid URL here else you will get an error
+            allowedFileExtensions: ['jpg', 'png', 'gif'],
+            overwriteInitial: false,
+            maxFileSize: 1000,
+            maxFilesNum: 10,
+            allowedFileTypes: ['image'],
+            slugCallback: function (filename) {
+                return filename.replace('(', '_').replace(']', '_');
+            }
+        });
+        $("#file-1").on('fileloaded', function (event, file, previewid, index) {
+            alert('i = ' + index + ', id = ' + previewid + ', file = ' + file.name);
+        });
+    });
+        //$(document).ready(function () {
+        //$("#test-upload").fileinput({
+        //    'showPreview': false,
+        //    'allowedFileExtensions': ['jpg', 'png', 'gif'],
+        //    'elErrorContainer': '#errorBlock'
+        //});
+
+        //$("#test-upload").on('fileloaded', function (event, file, previewId, index) {
+        //    alert('i = ' + index + ', id = ' + previewId + ', file = ' + file.name);
+        //});
+
+        //});
+</script>
+
+
+@section Scripts {
+
+
+}
+

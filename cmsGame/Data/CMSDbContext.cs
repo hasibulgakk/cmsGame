@@ -2,6 +2,7 @@
 using cmsGame.Models.Publish;
 using cmsGame.Models.Upload;
 using Microsoft.EntityFrameworkCore;
+using cmsGame.ViewModel;
 
 namespace cmsGame.Data
 {
@@ -18,5 +19,6 @@ namespace cmsGame.Data
       
         public DbSet<LoginModel> LoginModels { get; set; }
         public DbSet<GamePublishModel>  gamePublishModels { get; set; }
+        public DbSet<cmsGame.ViewModel.ListPublishViewModel> ListPublishViewModel { get; set; }
     }
 }
