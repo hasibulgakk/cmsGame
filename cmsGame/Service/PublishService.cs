@@ -1,6 +1,7 @@
 ﻿using cmsGame.Data;
 using cmsGame.Models.Publish;
 using cmsGame.Models.Upload;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,9 @@ namespace cmsGame.Service
         {
             this.cMSDbContext = cMSDbContext;
         }
-        public List<GamePublishModel> GetAllPublishGameList()
+        public async Task<List<GamePublishModel>> GetAllPublishGameList()
         {
-          return  cMSDbContext.gamePublishModels.ToList();
+          return await cMSDbContext.gamePublishModels.ToListAsync();
         }
     }
 }

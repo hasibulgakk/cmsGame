@@ -36,9 +36,10 @@ namespace cmsGame
 			services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
 				.AddEntityFrameworkStores<ApplicationDbContext>();
 			services.AddControllersWithViews();
-            services.AddDbContext<CMSDbContext>(options =>
+            services.AddDbContextPool<CMSDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddTransient<ICMSService, CMSService>();
+
+            services.AddScoped<ICMSService, CMSService>();
             services.AddScoped<ILoginService, LoginService>();
 			services.AddScoped<IPublishService, PublishService>();
 			services.AddSession(options =>

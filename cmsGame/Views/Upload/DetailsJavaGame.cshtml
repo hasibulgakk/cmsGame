@@ -1,4 +1,4 @@
-﻿@model IEnumerable<cmsGame.Models.Upload.UploadJavaGameModel>
+﻿@model cmsGame.ViewModel.ListJavaGameViewModel
 
 @{
     ViewData["Title"] = "DetailsJavaGame";
@@ -97,43 +97,43 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.Game_Title)
+                        @Html.DisplayNameFor(model => model.JavaGameModel.Game_Title)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Preview_URL)
+                            @Html.DisplayNameFor(model => model.JavaGameModel.Preview_URL)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Game_Owner_Code)
+                            @Html.DisplayNameFor(model => model.JavaGameModel.Game_Owner_Code)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Game_Type_Code)
+                            @Html.DisplayNameFor(model => model.JavaGameModel.Game_Type_Code)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Game_Price)
+                            @Html.DisplayNameFor(model => model.JavaGameModel.Game_Price)
                     </th>
                     @* <th>
-                    @Html.DisplayNameFor(model => model.Description)
+                        @Html.DisplayNameFor(model => model.JavaGameModel.Description)
                     </th>*@
                     <th>
-                        @Html.DisplayNameFor(model => model.Expire)
+                            @Html.DisplayNameFor(model => model.JavaGameModel.Expire)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Upload_Date)
+                            @Html.DisplayNameFor(model => model.JavaGameModel.Upload_Date)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Upload_By)
+                            @Html.DisplayNameFor(model => model.JavaGameModel.Upload_By)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Ismapped)
+                            @Html.DisplayNameFor(model => model.JavaGameModel.Ismapped)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Banner_Url)
+                            @Html.DisplayNameFor(model => model.JavaGameModel.Banner_Url)
                     </th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
+                @foreach (var item in Model.ListJavaGameViewModels)
                 {
                     <tr>
                         <td>

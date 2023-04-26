@@ -16,15 +16,15 @@ namespace cmsGame.Controllers
         {
             this.publishService = publishService;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             return View();
         }
 
         [HttpGet]
-        public ActionResult Publish()
+        public async Task<ActionResult> Publish()
         {
-          var model=  publishService.GetAllPublishGameList().ToList();
+          var model= await publishService.GetAllPublishGameList();
             return View(model);
 
         }

@@ -17,8 +17,11 @@
                     <div class="form-group col-md-12 col-lg-12">
                         <div class="col-lg-3">Content Owner:</div>
                         <div class="col-lg-8">
-                            @Html.DropDownList("ddlOwner", (SelectList)ViewBag.Owner, "Select Owner", new { @class = "form-control" })
+                            @*@Html.DropDownList("ddlOwner", (SelectList)ViewBag.Owner, "Select Owner", new { @class = "form-control" })*@
+                        <select asp-items="@ViewBag.Owner">
 
+
+                            </select>
                         </div>
                     </div>
 
@@ -27,7 +30,9 @@
                             Game Category:
                         </div>
                         <div class="col-lg-8 col-md-8">
-                            @Html.DropDownList("ddlCategory", (SelectList)ViewBag.Category, "Select Category", new { @class = "form-control" })
+                            @*@Html.DropDownList("ddlCategory", (SelectList)ViewBag.Category, "Select Category", new { @class = "form-control" })*@
+                        <select asp-items="@ViewBag.Category">
+                        </select>
                         </div>
                     </div>
 

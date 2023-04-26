@@ -9,6 +9,6 @@ namespace cmsGame.Service
 {
     public interface IPublishService
     {
-        public List<GamePublishModel> GetAllPublishGameList();
+        public Task<List<GamePublishModel>> GetAllPublishGameList();
     }
 }

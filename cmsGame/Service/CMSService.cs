@@ -49,7 +49,14 @@ namespace cmsGame.Service
         
         public async Task<List<UploadJavaGameModel>> ListServiceJava()
         {
-            return await dbContext.UploadJavaGameModel.OrderByDescending(i => i.Upload_Date).ToListAsync();
+            try {
+                return await dbContext.UploadJavaGameModel.OrderByDescending(i => i.Upload_Date).ToListAsync();
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
+           
         }
 
         public async Task<List<OwnerModel>> SelectListOwnerServiceJava()
@@ -58,7 +65,7 @@ namespace cmsGame.Service
             {
                 Owner_Code = x.Owner_Code,
                 Owner_Name = x.Owner_Name,
-            }).ToListAsync();
+            }).ToListAsync().ConfigureAwait(false);
         }
         public async Task<List<OwnerModel>> SelectListOwnerServiceAndriod()
         {
@@ -66,7 +73,7 @@ namespace cmsGame.Service
             {
                 Owner_Code = x.Owner_Code,
                 Owner_Name = x.Owner_Name,
-            }).ToListAsync();
+            }).ToListAsync().ConfigureAwait(false);
         }
 
 
@@ -76,11 +83,11 @@ namespace cmsGame.Service
             {
                 Category_Code = x.Category_Code,
                 Category_Title = x.Category_Title,
-            }).ToListAsync();
+            }).ToListAsync().ConfigureAwait(false);
         }
         public async Task<List<GameCategoryModel>> SelectListCategoryServiceAndriod()
         {
-          
+            
             return await dbContext.GameCategoryModels.Select(x => new GameCategoryModel()
             {
                 Category_Code = x.Category_Code,
@@ -91,7 +98,7 @@ namespace cmsGame.Service
         public async Task<UploadAndroidGameModel> EditServiceAndroid(int Game_Code,UploadAndroidGameModel uploadAndroid)
         {
         var model= await  dbContext.UploadAndroidGameModel.FirstOrDefaultAsync(x => x.Game_Code == Game_Code);
-            dbContext.SaveChanges();
+         dbContext.SaveChanges();
             return model;
         }
         public async Task<UploadAndroidGameModel> EditServiceAndroidGame(int Game_Code)

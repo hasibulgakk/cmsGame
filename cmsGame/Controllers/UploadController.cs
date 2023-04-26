@@ -1,6 +1,8 @@
-﻿using cmsGame.Data;
+﻿
+using cmsGame.Data;
 using cmsGame.Models.Upload;
 using cmsGame.Service;
+using cmsGame.ViewModel;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Http;
@@ -13,7 +15,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace cmsGame.Controllers
@@ -37,19 +41,21 @@ namespace cmsGame.Controllers
         // Details List Android
         public async Task<ActionResult> DetailsAndroidGame()
         {
-            UploadFileAndroidGame();
-            var model = await cMSService.ListServiceAndroid();
-
-            return View(model);
+            ListAndroidGameViewModel viewModel = new ListAndroidGameViewModel();
+            await UploadFileAndroidGame();
+            viewModel.ListAndroidGameViewModels = await cMSService.ListServiceAndroid();         
+            return View(viewModel);
 
         }
 
         // Details List Java
         public async Task<ActionResult> DetailsJavaGame()
         {
-            UploadFileJavaGame();
-            var model = cMSService.ListServiceJava();
-            return View(model);
+            ListJavaGameViewModel viewModel = new ListJavaGameViewModel();
+            await UploadFileJavaGame();
+            viewModel.ListJavaGameViewModels =await cMSService.ListServiceJava();
+          
+            return View(viewModel);
         }
 
 
@@ -167,7 +173,7 @@ namespace cmsGame.Controllers
                 upload.CurrentVersion = collection["CurrentVersion"];
                 upload.Size = collection["Size"];
                 upload.InstallK = collection["InstallK"];
-                cMSService.EditServiceAndroid(Game_Code, upload);
+               await cMSService.EditServiceAndroid(Game_Code, upload);
                  return RedirectToAction(nameof(DetailsAndroidGame));
             }
             catch(Exception ex)
@@ -241,14 +247,17 @@ namespace cmsGame.Controllers
 
         public async Task<ActionResult> UploadFileAndroidGame()
         {
-            OwnerModel ownerModel = new OwnerModel();
-            List<OwnerModel> ownerModelsList =await cMSService.SelectListOwnerServiceAndriod();
+
+           
+              var  ownerModelsList = await cMSService.SelectListOwnerServiceAndriod();
+         
+            var catList = await cMSService.SelectListCategoryServiceAndriod();
             if (ownerModelsList.Count > 0)
             {
                 ViewBag.Owner = new SelectList(ownerModelsList, "Owner_Code", "Owner_Name");
             }
-            GameCategoryModel categryModel = new GameCategoryModel();
-            List<GameCategoryModel> catList =await cMSService.SelectListCategoryServiceAndriod();
+
+            
             if (catList.Count > 0)
             {
                 ViewBag.Category = new SelectList(catList, "Category_Code", "Category_Title");
@@ -259,14 +268,14 @@ namespace cmsGame.Controllers
 
         public async Task <ActionResult> UploadFileJavaGame()
         {
-            OwnerModel ownerModel = new OwnerModel();
-            List<OwnerModel> ownerModelsList =await cMSService.SelectListOwnerServiceAndriod();
+          
+           var ownerModelsList =await cMSService.SelectListOwnerServiceJava();
             if (ownerModelsList.Count > 0)
             {
                 ViewBag.Owner = new SelectList(ownerModelsList, "Owner_Code", "Owner_Name");
             }
-            GameCategoryModel categryModel = new GameCategoryModel();
-            List<GameCategoryModel> catList =await cMSService.SelectListCategoryServiceAndriod();
+           
+           var catList =await cMSService.SelectListCategoryServiceJava();
             if (catList.Count > 0)
             {
                 ViewBag.Category = new SelectList(catList, "Category_Code", "Category_Title");
