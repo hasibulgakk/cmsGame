@@ -1,8 +1,10 @@
-﻿using cmsGame.Models.Upload;
+﻿using cmsGame.Models.Publish;
+using cmsGame.Models.Upload;
 using cmsGame.Service;
 using cmsGame.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -29,7 +31,7 @@ namespace cmsGame.Controllers
         [HttpGet]
         public async Task<ActionResult> Publish()
         {
-            
+           await UploadBillboard();
            List <ListPublishViewModel> listPublish = new List<ListPublishViewModel> ();
             var models = await publishService.GetAllPublishList();
             for (int i = 0; i < models.Rows.Count; i++)
@@ -155,6 +157,66 @@ namespace cmsGame.Controllers
         //        //ViewBag.error = "Publish Failed";
         //        return null;
         //    }
+        //}
+
+
+
+
+
+        [HttpGet]
+        public async Task<ActionResult> UploadBillboard()
+        {
+          List<GamePortalMasterModel> gm = new List<GamePortalMasterModel>();
+           var gmList =await publishService.GetPortal();
+            for (int i = 0; i < gmList.Rows.Count; i++)
+            {
+                GamePortalMasterModel model = new GamePortalMasterModel();
+                model.Portal_Code = (int)gmList.Rows[i]["Portal_Code"];
+                model.Portal_Name = gmList.Rows[i]["Portal_Name"].ToString();
+                gm.Add(model);
+            }
+            ViewBag.Portal = new SelectList(gm, "Portal_Code", dataTextField: "Portal_Name");
+           
+
+           
+            return View();
+        }
+
+
+        public async Task<JsonResult> GetPubCat(string Id)
+        {
+            List<GetPublishCategoryModel> models=new List<GetPublishCategoryModel>();
+
+               var catList =await publishService.GetPubCat(Convert.ToInt32(Id));
+           for(int i = 0; i < catList.Rows.Count; i++) {
+                GetPublishCategoryModel model = new GetPublishCategoryModel();
+                model.Category_Code = (int)catList.Rows[i]["Category_Code"];
+                model.Category_Title = catList.Rows[i]["Category_Title"].ToString();
+                models.Add(model);
+                    }
+                //var result = new SelectList(catList, "CategoryCode", "CategoryName");
+                //return Json(new { myResult = result }, JsonRequestBehavior.AllowGet);
+                return Json(new SelectList(models, "CategoryCode", "CategoryName"));
+            
+           
+        }
+
+        //public JsonResult GetSubCat(string Id)
+        //{
+        //    Game gm = new Game();
+
+        //    List<Game> catList = gm.GetPublishSubCategory(Id);
+        //    if (catList.Count > 0)
+        //    {
+        //        //var result = new SelectList(catList, "CategoryCode", "CategoryName");
+        //        //return Json(new { myResult = result }, JsonRequestBehavior.AllowGet);
+        //        return Json(new SelectList(catList, "CategoryCode", "CategoryName"));
+        //    }
+        //    else
+        //    {
+        //        return Json(new SelectList(catList, "CategoryCode", "CategoryName"));
+        //    }
+
         //}
     }
 }

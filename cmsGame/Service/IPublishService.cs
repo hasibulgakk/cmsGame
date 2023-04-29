@@ -12,5 +12,7 @@ namespace cmsGame.Service
     {
        public Task<DataTable> GetAllPublishList();
         public  Task<DataTable> GetAllPublishGameList();
+        public Task<DataTable> GetPubCat(int id);
+      public  Task<DataTable> GetPortal();
     }
 }
