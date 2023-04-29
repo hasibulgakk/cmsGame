@@ -9,6 +9,7 @@ using System.Data.Common;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace cmsGame.Service
 {
@@ -51,8 +52,9 @@ namespace cmsGame.Service
             DataTable dt = new DataTable();
             SqlConnection dbConnection = (SqlConnection)cMSDbContext.Database.GetDbConnection();
 
-            using (SqlDataAdapter da = new SqlDataAdapter("spGetPublishCategory", dbConnection))
+            using (var cmd = new SqlCommand("exec spGetPublishCategory" +" "+ id.ToString(), dbConnection))
             {
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
 
                 return dt;
@@ -65,6 +67,14 @@ namespace cmsGame.Service
 
             using (SqlDataAdapter da = new SqlDataAdapter("spGetPortal", dbConnection))
             {
+                //  SqlCommand  sqlCommand=new SqlCommand();
+                //var dr = sqlCommand.ExecuteReader();
+                
+                //sqlCommand.CommandText = "exec spGetPortal";
+                //SqlParameter sp = new SqlParameter();
+                //sp.ParameterName = "@id";
+             
+                //sqlCommand.Parameters.Add(sp);
                 da.Fill(dt);
 
                 return dt;

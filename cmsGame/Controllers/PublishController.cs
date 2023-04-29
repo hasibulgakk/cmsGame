@@ -196,7 +196,7 @@ namespace cmsGame.Controllers
                     }
                 //var result = new SelectList(catList, "CategoryCode", "CategoryName");
                 //return Json(new { myResult = result }, JsonRequestBehavior.AllowGet);
-                return Json(new SelectList(models, "CategoryCode", "CategoryName"));
+                return Json(new SelectList(models, "Category_Code", "Category_Title"));
             
            
         }
@@ -217,6 +217,6 @@ namespace cmsGame.Controllers
         //        return Json(new SelectList(catList, "CategoryCode", "CategoryName"));
         //    }
 
-        //}
+        }
     }
 }
