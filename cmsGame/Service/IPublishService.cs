@@ -18,6 +18,8 @@ namespace cmsGame.Service
         public Task<DataTable> GetPublishGameListByPublishID(string Publish_ID);
         public  Task<DataTable> InsertPublishGameData(int code, int portal, int Cat, string type, string publishBy);
 
+        public  Task<DataTable> GetAllGameByType(string type, string portal);
+
 
     }
 }

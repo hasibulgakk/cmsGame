@@ -8,8 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Runtime.InteropServices;
+
 using System.Threading.Tasks;
 
 namespace cmsGame.Controllers
@@ -67,7 +66,7 @@ namespace cmsGame.Controllers
         [HttpGet]
         public async Task<ActionResult> PublishedGameList()
         {
-          var Publish_ID =  HttpContext.Request.Query["Publish_ID"].ToString();
+          var Publish_ID =  HttpContext.Request.Query["Publish_ID"].ToString()!="" ? HttpContext.Request.Query["Publish_ID"].ToString():"1";
             await GetPublish( Publish_ID);
             List<ListPublishViewModel> ListviewModel = new List<ListPublishViewModel>();
             List<PublishedGameListViewModel> listGamemodel = new List<PublishedGameListViewModel>();
@@ -115,9 +114,9 @@ namespace cmsGame.Controllers
         }
        public async Task<ActionResult> GetPublish(string Publish_ID)
         {
-          await  SaveGameAsync();
+      
             var list = await publishService.GetPublishGameListByPublishID(Publish_ID);
-            
+      
             for (int i = 0; i < list.Rows.Count; i++) {
                 viewModel.Game_Title = list.Rows[i]["Game_Title"].ToString();
                 viewModel.Publish_Date = Convert.ToDateTime(list.Rows[i]["Publish_Date"]);
@@ -128,8 +127,9 @@ namespace cmsGame.Controllers
                 viewModel.Publish_By = list.Rows[i]["Publish_By"].ToString();
                 viewModel.Publish_ID = (int)list.Rows[i]["Publish_ID"];
                 viewModel.Portal_Code = (int)list.Rows[i]["Portal_Code"];
-                return View(viewModel);
+           
             }
+            await SaveGameAsync();
             return View();
         }
 
@@ -238,5 +238,31 @@ namespace cmsGame.Controllers
                 return Json(new SelectList(models, "Category_Code", "Category_Title"));
 
         }
+
+
+        [HttpPost]
+        public async Task<JsonResult>  GetAllGameByType(string type, string portal)
+        {
+            List<PublishedGameListViewModel> publishedGameListModel = new List<PublishedGameListViewModel>();
+              var model =await publishService.GetAllGameByType(type,portal);
+           // return Json(new {myResult=model});
+           for(int i = 0; i < model.Rows.Count; i++)
+            {
+                PublishedGameListViewModel publishedGameModel = new PublishedGameListViewModel();
+                publishedGameModel.Game_Title = model.Rows[i]["Game_Title"].ToString();
+                publishedGameModel.Game_Code = (int)model.Rows[i]["Game_Code"];
+                publishedGameModel.Game_Price = model.Rows[i]["Game_Price"].ToString();
+                publishedGameModel.Preview_URL = model.Rows[i]["Preview_URL"].ToString();
+                publishedGameModel.Owner_Name = model.Rows[i]["Owner_Name"].ToString();
+                publishedGameModel.GType_Name = model.Rows[i]["GType_Name"].ToString();
+                publishedGameModel.Physical_Location = model.Rows[i]["Physical_Location"].ToString();
+                publishedGameListModel.Add(publishedGameModel);
+
+            }
+
+            return Json(model);
+        }
+
+
     }
 }
