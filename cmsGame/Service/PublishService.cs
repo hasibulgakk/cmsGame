@@ -20,10 +20,19 @@ namespace cmsGame.Service
         {
             this.cMSDbContext = cMSDbContext;
         }
-        //public async Task<List<GamePublishModel>> GetAllPublishGameList()
-        //{
-        //  return await cMSDbContext.gamePublishModels.ToListAsync();
-        //}
+        public async Task<DataTable> GetAllPublishList()
+        {
+            
+           DataTable dt = new DataTable();
+            SqlConnection dbConnection = (SqlConnection)cMSDbContext.Database.GetDbConnection();
+
+            using (SqlDataAdapter da = new SqlDataAdapter("spPublishGameList", dbConnection))
+            {
+                da.Fill(dt);
+
+                return dt;
+            }
+        }
 
         public async Task<DataTable> GetAllPublishGameList()
         {
@@ -37,5 +46,34 @@ namespace cmsGame.Service
                 return dt;
                     }
         }
+
+        //public async Task<List<Game>> GetGame(string Type, string Portal)
+        //{
+        //    DataSet ds = db.GetDataSet("spGetAllGameByType '" + Type + "', '" + Portal + "'", "GPCMS");
+        //    if (ds != null)
+        //    {
+        //        Game gm = new Game();
+        //        List<Game> gmList = new List<Game>();
+        //        for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+        //        {
+        //            gm = new Game();
+        //            gm.ContentCode = ds.Tables[0].Rows[i].ItemArray[0].ToString();
+        //            gm.ContentTitle = ds.Tables[0].Rows[i].ItemArray[1].ToString();
+        //            gm.PreviewURL = ds.Tables[0].Rows[i].ItemArray[2].ToString();
+        //            gm.OwnerCode = ds.Tables[0].Rows[i].ItemArray[3].ToString();
+        //            gm.CategoryName = ds.Tables[0].Rows[i].ItemArray[4].ToString();
+        //            gm.GamePrice = ds.Tables[0].Rows[i].ItemArray[5].ToString();
+        //            gm.PhysicalFile = ds.Tables[0].Rows[i].ItemArray[6].ToString();
+        //            gmList.Add(gm);
+        //        }
+        //        return gmList;
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+        //}
+
+
     }
 }

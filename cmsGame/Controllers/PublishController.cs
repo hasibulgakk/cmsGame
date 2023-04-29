@@ -29,8 +29,25 @@ namespace cmsGame.Controllers
         [HttpGet]
         public async Task<ActionResult> Publish()
         {
-            var model = await publishService.GetAllPublishGameList();
-            return View(model);
+            
+           List <ListPublishViewModel> listPublish = new List<ListPublishViewModel> ();
+            var models = await publishService.GetAllPublishList();
+            for (int i = 0; i < models.Rows.Count; i++)
+            {
+                ListPublishViewModel publish = new ListPublishViewModel();
+                publish.Publish_Date = DateTime.Now;
+                publish.Publish_By = models.Rows[i]["Publish_By"].ToString();
+                publish.Publish_ID= (int)models.Rows[i]["Publish_ID"];   
+                publish.Category_Code = (int)models.Rows[i]["Category_Code"];
+                publish.Expire = models.Rows[i]["Expire"].ToString();
+                publish.Game_Code = (int)models.Rows[i]["Game_Code"];
+                publish.Game_Title= models.Rows[i]["Game_Title"].ToString();
+                publish.Portal_Code = (int)models.Rows[i]["Portal_Code"];
+                publish.Game_Type = models.Rows[i]["Game_Type"].ToString();
+                listPublish.Add(publish);
+              
+            }
+            return View(listPublish);
 
         }
 
