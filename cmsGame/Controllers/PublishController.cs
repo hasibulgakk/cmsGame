@@ -18,7 +18,7 @@ namespace cmsGame.Controllers
     {
         private readonly IPublishService publishService;
         private readonly IHttpContextAccessor httpContextAccessor;
-        ListPublishViewModel viewModel = null;
+        ListPublishViewModel viewModel = new ListPublishViewModel();
         public PublishController(IPublishService publishService,IHttpContextAccessor httpContextAccessor)
         {
             this.publishService = publishService;
@@ -67,7 +67,8 @@ namespace cmsGame.Controllers
         [HttpGet]
         public async Task<ActionResult> PublishedGameList()
         {
-            //await PublishList();
+          var Publish_ID =  HttpContext.Request.Query["Publish_ID"].ToString();
+            await GetPublish( Publish_ID);
             List<ListPublishViewModel> ListviewModel = new List<ListPublishViewModel>();
             List<PublishedGameListViewModel> listGamemodel = new List<PublishedGameListViewModel>();
             var list = await publishService.GetAllPublishGameList();
@@ -114,8 +115,9 @@ namespace cmsGame.Controllers
         }
        public async Task<ActionResult> GetPublish(string Publish_ID)
         {
+          await  SaveGameAsync();
             var list = await publishService.GetPublishGameListByPublishID(Publish_ID);
-             viewModel = new ListPublishViewModel();
+            
             for (int i = 0; i < list.Rows.Count; i++) {
                 viewModel.Game_Title = list.Rows[i]["Game_Title"].ToString();
                 viewModel.Publish_Date = Convert.ToDateTime(list.Rows[i]["Publish_Date"]);
@@ -131,16 +133,16 @@ namespace cmsGame.Controllers
             return View();
         }
 
-     [HttpPost]
-        public async Task<ActionResult> SaveGameAsync(int code, int portal, int Cat, int subcat, string type)
+     [HttpGet]
+        public async Task<ActionResult> SaveGameAsync()
         {        
         DataTable result;
-      
-            Cat = viewModel.Category_Code;
-             code = viewModel.Game_Code ;
-            type = viewModel.Game_Type ;
+            
+            int  Cat = viewModel.Category_Code;
+           int  code = viewModel.Game_Code ;
+           string type = viewModel.Game_Type ;
 
-            portal = viewModel.Portal_Code ;
+           int portal = viewModel.Portal_Code ;
             string publish_by = httpContextAccessor.HttpContext.Session.GetString("User");
             //if (subcat == 0)
             //{
