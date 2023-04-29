@@ -96,6 +96,38 @@ namespace cmsGame.Service
             }
 
         }
+
+        public async Task<DataTable> GetPublishGameListByPublishID(string Publish_ID)
+        {
+
+
+            DataTable dt = new DataTable();
+            SqlConnection dbConnection = (SqlConnection)cMSDbContext.Database.GetDbConnection();
+            using (var cmd = new SqlCommand("exec spGetPublishGameListByPublishID" + " " + Publish_ID.ToString(), dbConnection))
+            {
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+
+                return dt;
+            }
+
+        }
+
+        public async Task<DataTable> InsertPublishGameData(int code, int portal, int Cat, string type,string publishBy)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection dbConnection = (SqlConnection)cMSDbContext.Database.GetDbConnection();
+            using (var cmd = new SqlCommand("exec spInsertPublishGameData" + " " +code+","+ " " + portal+","+" "+ Cat+","+" "+ type+ "," + " " + DateTime.Now + "," + " "+ publishBy, dbConnection))
+            {
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+
+                return dt;
+            }
+
+
+        }
+
             //public async Task<List<Game>> GetGame(string Type, string Portal)
             //{
             //    DataSet ds = db.GetDataSet("spGetAllGameByType '" + Type + "', '" + Portal + "'", "GPCMS");

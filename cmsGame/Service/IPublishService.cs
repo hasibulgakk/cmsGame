@@ -15,5 +15,9 @@ namespace cmsGame.Service
         public Task<DataTable> GetPubCat(int id);
         public  Task<DataTable> GetPortal();
         public  Task<DataTable> GetSubCat(int id);
+        public Task<DataTable> GetPublishGameListByPublishID(string Publish_ID);
+        public  Task<DataTable> InsertPublishGameData(int code, int portal, int Cat, string type, string publishBy);
+
+
     }
 }

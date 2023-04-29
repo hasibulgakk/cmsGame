@@ -18,7 +18,7 @@ namespace cmsGame.Controllers
     {
         private readonly IPublishService publishService;
         private readonly IHttpContextAccessor httpContextAccessor;
-
+        ListPublishViewModel viewModel = null;
         public PublishController(IPublishService publishService,IHttpContextAccessor httpContextAccessor)
         {
             this.publishService = publishService;
@@ -112,53 +112,74 @@ namespace cmsGame.Controllers
             //DataTable result = publishService.GetGame();
             return View(ListviewModel);
         }
-        //[HttpPost]
-        //public async Task<ActionResult> SaveGameAsync(int code, int portal, int Cat, int subcat, string type)
-        //{
-        //    Publish();
-        //    //Game gm = new Game();
-        //    DataTable result;
-        //    //if (System.IO.File.Exists(zippath))
-        //    //{
-        //    //System.IO.File.Delete(zippath);
-        //    //}
+       public async Task<ActionResult> GetPublish(string Publish_ID)
+        {
+            var list = await publishService.GetPublishGameListByPublishID(Publish_ID);
+             viewModel = new ListPublishViewModel();
+            for (int i = 0; i < list.Rows.Count; i++) {
+                viewModel.Game_Title = list.Rows[i]["Game_Title"].ToString();
+                viewModel.Publish_Date = Convert.ToDateTime(list.Rows[i]["Publish_Date"]);
+                viewModel.Expire = list.Rows[i]["Expire"].ToString();
+                viewModel.Category_Code = (int)list.Rows[i]["Category_Code"];
+                viewModel.Game_Code = (int)list.Rows[i]["Game_Code"];
+                viewModel.Game_Type = list.Rows[i]["Game_Type"].ToString();
+                viewModel.Publish_By = list.Rows[i]["Publish_By"].ToString();
+                viewModel.Publish_ID = (int)list.Rows[i]["Publish_ID"];
+                viewModel.Portal_Code = (int)list.Rows[i]["Portal_Code"];
+                return View(viewModel);
+            }
+            return View();
+        }
 
-        //    string publish_by = httpContextAccessor.HttpContext.Session.GetString("User");
-        //    if (subcat == 0)
-        //    {
-        //        result = await publishService.InsertPublishGameData(code, portal, Cat, type, DateTime.Now, publish_by);
-        //    }
-        //    else
-        //    {
-        //        result = await publishService.InsertPublishGameData(code, portal, subcat, type, DateTime.Now, publish_by);
-        //    }
-        //    if (result != null)
-        //    {
-        //        //List<Game> gmList = gm.GetPortal();
-        //        ////return Json(new { myResult = gmList }, JsonRequestBehavior.AllowGet);
+     [HttpPost]
+        public async Task<ActionResult> SaveGameAsync(int code, int portal, int Cat, int subcat, string type)
+        {
+     
+        
+        DataTable result;
+      
+      
+            Cat = viewModel.Category_Code;
+             code = viewModel.Game_Code ;
+            type = viewModel.Game_Type ;
 
-        //        //if (gmList.Count > 0)
-        //        //{
-        //        //    ViewBag.Portal = new SelectList(gmList, "ContentCode", "ContentTitle");
-        //        //    //return Json(new { myResult = gmList }, JsonRequestBehavior.AllowGet);
-        //        //}
-        //        //ViewBag.error = "Publish Sucessful";
-        //        return View("Publish");
-        //    }
-        //    else
-        //    {
-        //        //List<Game> gmList = gm.GetPortal();
-        //        ////return Json(new { myResult = gmList }, JsonRequestBehavior.AllowGet);
+            portal = viewModel.Portal_Code ;
+            string publish_by = httpContextAccessor.HttpContext.Session.GetString("User");
+            //if (subcat == 0)
+            //{
+                result = await publishService.InsertPublishGameData(code, portal, Cat, type, publish_by);
+            //}
+            //else
+            //{
+            //    result = await publishService.InsertPublishGameData(code, portal, subcat, type, DateTime.Now, publish_by);
+            //}
+            if (result != null)
+           {
+                //List<Game> gmList = gm.GetPortal();
+               // return Json(new { myResult = gmList }, JsonRequestBehavior.AllowGet);
 
-        //        //if (gmList.Count > 0)
-        //        //{
-        //        //    ViewBag.Portal = new SelectList(gmList, "ContentCode", "ContentTitle");
-        //        //    //return Json(new { myResult = gmList }, JsonRequestBehavior.AllowGet);
-        //        //}
-        //        //ViewBag.error = "Publish Failed";
-        //        return null;
-        //    }
-        //}
+                //if (gmList.Count > 0)
+                //{
+                //    ViewBag.Portal = new SelectList(gmList, "ContentCode", "ContentTitle");
+                //    //return Json(new { myResult = gmList }, JsonRequestBehavior.AllowGet);
+                //}
+                //ViewBag.error = "Publish Sucessful";
+                return View("PublishedGameList");
+            }
+            else
+            {
+                //List<Game> gmList = gm.GetPortal();
+               // return Json(new { myResult = gmList }, JsonRequestBehavior.AllowGet);
+
+                //if (gmList.Count > 0)
+                //{
+                //    ViewBag.Portal = new SelectList(gmList, "ContentCode", "ContentTitle");
+                //    //return Json(new { myResult = gmList }, JsonRequestBehavior.AllowGet);
+                //}
+                //ViewBag.error = "Publish Failed";
+                return null;
+            }
+        }
 
 
 
