@@ -133,11 +133,8 @@ namespace cmsGame.Controllers
 
      [HttpPost]
         public async Task<ActionResult> SaveGameAsync(int code, int portal, int Cat, int subcat, string type)
-        {
-     
-        
+        {        
         DataTable result;
-      
       
             Cat = viewModel.Category_Code;
              code = viewModel.Game_Code ;
