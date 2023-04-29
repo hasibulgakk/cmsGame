@@ -60,6 +60,21 @@ namespace cmsGame.Service
                 return dt;
             }
         }
+
+        public async Task<DataTable> GetSubCat(int id)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection dbConnection = (SqlConnection)cMSDbContext.Database.GetDbConnection();
+
+            using (var cmd = new SqlCommand("exec spGetPublishSubCategory" + " " + id.ToString(), dbConnection))
+            {
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+
+                return dt;
+            }
+        }
+
         public async Task<DataTable> GetPortal()
         {
             DataTable dt = new DataTable();

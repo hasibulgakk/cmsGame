@@ -10,9 +10,10 @@ namespace cmsGame.Service
 {
     public interface IPublishService
     {
-       public Task<DataTable> GetAllPublishList();
+        public Task<DataTable> GetAllPublishList();
         public  Task<DataTable> GetAllPublishGameList();
         public Task<DataTable> GetPubCat(int id);
-      public  Task<DataTable> GetPortal();
+        public  Task<DataTable> GetPortal();
+        public  Task<DataTable> GetSubCat(int id);
     }
 }

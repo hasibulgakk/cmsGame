@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace cmsGame.Controllers
@@ -201,21 +202,20 @@ namespace cmsGame.Controllers
            
         }
 
-        //public JsonResult GetSubCat(string Id)
-        //{
-        //    Game gm = new Game();
+        public async Task<JsonResult> GetSubCat(string Id)
+        {
+            List<GetPublishCategoryModel> models = new List<GetPublishCategoryModel>();
 
-        //    List<Game> catList = gm.GetPublishSubCategory(Id);
-        //    if (catList.Count > 0)
-        //    {
-        //        //var result = new SelectList(catList, "CategoryCode", "CategoryName");
-        //        //return Json(new { myResult = result }, JsonRequestBehavior.AllowGet);
-        //        return Json(new SelectList(catList, "CategoryCode", "CategoryName"));
-        //    }
-        //    else
-        //    {
-        //        return Json(new SelectList(catList, "CategoryCode", "CategoryName"));
-        //    }
+            var catList = await publishService.GetSubCat(Convert.ToInt32(Id));
+           for(int i = 0; i<catList.Rows.Count; i++) {
+                GetPublishCategoryModel model = new GetPublishCategoryModel();
+        model.Category_Code = (int) catList.Rows[i]["Category_Code"];
+        model.Category_Title = catList.Rows[i]["Category_Title"].ToString();
+        models.Add(model);
+                    }
+                //var result = new SelectList(catList, "CategoryCode", "CategoryName");
+                //return Json(new { myResult = result }, JsonRequestBehavior.AllowGet);
+                return Json(new SelectList(models, "Category_Code", "Category_Title"));
 
         }
     }
