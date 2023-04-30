@@ -25,9 +25,10 @@ namespace cmsGame.Controllers
 
 		public async Task <IActionResult> Index()
 		{
-			//ViewBag.AndroidCount = await cMSService.ListServiceAndroid().Count.ToString();
-			//ViewBag.JavaCount = await cMSService.ListServiceJava().Count.ToString();
-			//ViewBag.PublishCount= publishService.GetAllPublishGameList().Count.ToString();
+			ViewBag.AndroidCount =  cMSService.ListServiceAndroid().Result.Count.ToString();
+			ViewBag.JavaCount =  cMSService.ListServiceJava().Result.Count.ToString();
+			var Total =await publishService.GetAllPublishGameList();
+            ViewBag.PublishCount=Total.Rows.Count ;
             return View();
 		}
 
