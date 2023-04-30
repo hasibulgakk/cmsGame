@@ -66,7 +66,7 @@ namespace cmsGame.Controllers
         [HttpGet]
         public async Task<ActionResult> PublishedGameList()
         {
-          var Publish_ID =  HttpContext.Request.Query["Publish_ID"].ToString()!="" ? HttpContext.Request.Query["Publish_ID"].ToString():"1";
+          var Publish_ID =  HttpContext.Request.Query["Publish_ID"].ToString()!="" ? HttpContext.Request.Query["Publish_ID"].ToString():"6";
             await GetPublish( Publish_ID);
             List<ListPublishViewModel> ListviewModel = new List<ListPublishViewModel>();
             List<PublishedGameListViewModel> listGamemodel = new List<PublishedGameListViewModel>();
@@ -129,12 +129,12 @@ namespace cmsGame.Controllers
                 viewModel.Portal_Code = (int)list.Rows[i]["Portal_Code"];
            
             }
-            await SaveGameAsync();
+            await SaveGameAsync(Publish_ID);
             return View();
         }
 
      [HttpGet]
-        public async Task<ActionResult> SaveGameAsync()
+        public async Task<ActionResult> SaveGameAsync(string Publish_ID)
         {        
         DataTable result;
             
@@ -146,7 +146,7 @@ namespace cmsGame.Controllers
             string publish_by = httpContextAccessor.HttpContext.Session.GetString("User");
             //if (subcat == 0)
             //{
-                result = await publishService.InsertPublishGameData(code, portal, Cat, type, publish_by);
+                result = await publishService.InsertPublishGameData(code, portal, Cat, type, publish_by, Publish_ID);
             //}
             //else
             //{
@@ -240,8 +240,8 @@ namespace cmsGame.Controllers
         }
 
 
-        [HttpPost]
-        public async Task<ActionResult>  GetAllGameByType(string type, string portal)
+       
+        public async Task<PartialViewResult>  GetAllGameByType(string type, string portal)
         {
             List<PublishedGameListViewModel> publishedGameListModel = new List<PublishedGameListViewModel>();
               var model =await publishService.GetAllGameByType(type,portal);
@@ -261,7 +261,7 @@ namespace cmsGame.Controllers
             }
            ViewBag.PublishedGameListModel = publishedGameListModel;
            // return Json(model);
-           return PartialView();       
+           return PartialView("GetAllGameByType", publishedGameListModel);       
         }
 
 

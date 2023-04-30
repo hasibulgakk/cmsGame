@@ -109,11 +109,11 @@ namespace cmsGame.Service
 
         }
 
-        public async Task<DataTable> InsertPublishGameData(int code, int portal, int Cat, string type,string publishBy)
+        public async Task<DataTable> InsertPublishGameData(int code, int portal, int Cat, string type,string publishBy,string Publish_ID)
         {
             DataTable dt = new DataTable();
             SqlConnection dbConnection = (SqlConnection)cMSDbContext.Database.GetDbConnection();
-            using (var cmd = new SqlCommand("exec spInsertPublishGameData" + " " +code+","+ " " + portal+","+" "+ Cat+","+" "+ type+ "," + " " +"'"+ DateTime.Now.ToString("yyyyMMdd")+ "'" + "," + " "+ publishBy, dbConnection))
+            using (var cmd = new SqlCommand("exec spInsertPublishGameData" + " " +code+","+ " " + portal+","+" "+ Cat+","+" "+ type+ "," + " " +"'"+ DateTime.Now.ToString("yyyyMMdd")+ "'" + "," + Publish_ID + " "+ "," + " "+ publishBy, dbConnection))
             {
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
