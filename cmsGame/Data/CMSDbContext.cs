@@ -20,5 +20,6 @@ namespace cmsGame.Data
         public DbSet<LoginModel> LoginModels { get; set; }
         public DbSet<GamePublishModel>  gamePublishModels { get; set; }
         public DbSet<cmsGame.ViewModel.ListPublishViewModel> ListPublishViewModel { get; set; }
+        public DbSet<cmsGame.ViewModel.PublishedGameListViewModel> PublishedGameListViewModel { get; set; }
     }
 }

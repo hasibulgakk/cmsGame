@@ -241,7 +241,7 @@ namespace cmsGame.Controllers
 
 
         [HttpPost]
-        public async Task<JsonResult>  GetAllGameByType(string type, string portal)
+        public async Task<ActionResult>  GetAllGameByType(string type, string portal)
         {
             List<PublishedGameListViewModel> publishedGameListModel = new List<PublishedGameListViewModel>();
               var model =await publishService.GetAllGameByType(type,portal);
@@ -259,8 +259,9 @@ namespace cmsGame.Controllers
                 publishedGameListModel.Add(publishedGameModel);
 
             }
-
-            return Json(model);
+           ViewBag.PublishedGameListModel = publishedGameListModel;
+           // return Json(model);
+           return PartialView();       
         }
 
 
